@@ -1,5 +1,5 @@
 const settings = require("./settings");
-const knex = require('knex')({
+const db = require('knex')({
   client: 'pg',
   connection: {
     host : settings.hostname,
@@ -15,7 +15,7 @@ console.log(name);
 
 console.log("Searching...");
 
-knex.select('*')
+db.select('*')
   .from('famous_people')
   .where('first_name', 'like', name)
   .orWhere('last_name', 'like', name)

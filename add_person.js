@@ -1,5 +1,5 @@
 const settings = require("./settings");
-const knex = require('knex')({
+const db = require('knex')({
   client: 'pg',
   connection: {
     host : settings.hostname,
@@ -15,7 +15,7 @@ const newLastName = process.argv[3];
 const newBirthdate = process.argv[4];
 
 
-knex('famous_people').insert({first_name: newFirstName, last_name: newLastName, birthdate: newBirthdate})
+db('famous_people').insert({first_name: newFirstName, last_name: newLastName, birthdate: newBirthdate})
   .then(function(){
     console.log("Successfully added " + newFirstName + " " + newLastName + " " + newBirthdate);
   })

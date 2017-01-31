@@ -16,7 +16,7 @@ client.connect((err) => {
   if (err) {
     return console.error("Connection Error", err);
   }
-  client.query("SELECT * FROM famous_people WHERE UPPER(first_name) LIKE UPPER($1) OR UPPER(last_name) LIKE UPPER($1)", [`%${q}%`], (err, result) => {
+  client.query("SELECT * FROM famous_people WHERE UPPER(first_name) LIKE UPPER($1) OR UPPER(last_name) LIKE CONCAT('%',UPPER($1),'%')", [`${q}`], (err, result) => {
     if (err) {
       return console.error("error running query", err);
     } else {
